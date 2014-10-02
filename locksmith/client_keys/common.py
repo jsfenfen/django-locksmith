@@ -95,7 +95,7 @@ def _slowaes_decrypt(password, string):
 
     return aes.strip_PKCS7_padding(decr)
 
-if True:
+if False:
     # use slowaes, which is fast enough, and works on pypy
     import aes
     _encrypt = _slowaes_encrypt

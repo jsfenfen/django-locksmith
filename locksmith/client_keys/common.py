@@ -31,7 +31,7 @@ def get_client_key(master_key, hostname, user_agent):
     
     return signed[10:].replace("+", "-").replace("/", "_")
 
-def check_client_key(client_key, hostname, user_agent, enforce=False):
+def check_client_key(client_key, hostname, user_agent, enforce=True):
     
     dateint = get_dateint()
     

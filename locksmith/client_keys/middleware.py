@@ -14,7 +14,7 @@ class ClientKeyMiddleware(object):
         user_agent = request.META.get("HTTP_USER_AGENT", "")
         if key is not None:
             try:
-                apikey = check_cached_client_key(key, hostname, user_agent)
+                apikey = check_cached_client_key(key, user_agent)
                 GET = request.GET.copy()
                 GET[QS_PARAM] = apikey
                 request.GET = GET

@@ -13,8 +13,7 @@ def get_dateint():
     today = date.today()
     return today.month*32+today.day
 
-def get_client_key(master_key, user_agent):
-    hostname = "realtime"
+def get_client_key(master_key, hostname, user_agent):
     ukey = uuid.UUID(master_key)
         
     dateint = get_dateint()
@@ -32,8 +31,7 @@ def get_client_key(master_key, user_agent):
     
     return signed[10:].replace("+", "-").replace("/", "_")
 
-def check_client_key(client_key, user_agent, enforce=False):
-    hostname = "realtime"
+def check_client_key(client_key, hostname, user_agent, enforce=False):
     
     dateint = get_dateint()
     

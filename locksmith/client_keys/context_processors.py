@@ -8,7 +8,7 @@ def client_key_context(request):
             return {}
         user_agent = ua[:8].upper()
         return {
-            'CLIENT_KEY': lambda: get_cached_client_key(settings.LOCKSMITH_CLIENT_KEY, user_agent)
+            'CLIENT_KEY': lambda: get_cached_client_key(settings.LOCKSMITH_CLIENT_KEY, request.get_host(), user_agent)
         }
     else:
         return {}

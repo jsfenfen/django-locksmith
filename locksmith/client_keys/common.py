@@ -32,7 +32,7 @@ def get_client_key(master_key, user_agent):
     
     return signed[10:].replace("+", "-").replace("/", "_")
 
-def check_client_key(client_key, user_agent):
+def check_client_key(client_key, user_agent, enforce=False):
     hostname = "realtime"
     
     dateint = get_dateint()
@@ -60,13 +60,16 @@ def check_client_key(client_key, user_agent):
     print "check_client_key: hostname_cs %s" % (hostname_cs)
     
     # just make it pass.
-    return key
+    if not enforce:
+        return key
     
     if hostname_cs != binascii.crc32("%s/%s" % (hostname, user_agent)):
         raise ValueError("Hostname or user agent for this key doesn't match.")
 
     if dateint - key_ts > 1:
         raise ValueError("Key has expired.")
+    
+    print "**valid!"
 
     return key
 
